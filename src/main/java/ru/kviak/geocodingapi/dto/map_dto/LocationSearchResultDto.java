@@ -1,16 +1,14 @@
-package ru.kviak.geocodingapi.util;
+package ru.kviak.geocodingapi.dto.map_dto;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 @Getter @Setter @NoArgsConstructor @AllArgsConstructor
-public class LocationSearchResult {
+public class LocationSearchResultDto {
     private Summary summary;
     private Result[] results;
-    private Position position;
+    private Address[] addresses;
+    private PositionDto position;
 
     // Геттеры и сеттеры (необязательно, но рекомендуется)
     @Getter @Setter @NoArgsConstructor @AllArgsConstructor
@@ -25,6 +23,7 @@ public class LocationSearchResult {
 
         // Геттеры и сеттеры (необязательно, но рекомендуется)
     }
+
     @Getter @Setter @NoArgsConstructor @AllArgsConstructor
     public static class Result {
         private String type;
@@ -32,17 +31,11 @@ public class LocationSearchResult {
         private double score;
         private MatchConfidence matchConfidence;
         private Address address;
-        private Position position;
+        private PositionDto position;
         private Viewport viewport;
         private BoundingBox boundingBox;
         private DataSources dataSources;
         private String entityType;
-
-        // Геттеры и сеттеры (необязательно, но рекомендуется)
-    }
-    @Getter @Setter @NoArgsConstructor @AllArgsConstructor
-    public static class MatchConfidence {
-        private double score;
 
         // Геттеры и сеттеры (необязательно, но рекомендуется)
     }
@@ -63,6 +56,13 @@ public class LocationSearchResult {
 
         // Геттеры и сеттеры (необязательно, но рекомендуется)
     }
+    @Getter @Setter @NoArgsConstructor @AllArgsConstructor
+    public static class MatchConfidence {
+        private double score;
+
+        // Геттеры и сеттеры (необязательно, но рекомендуется)
+    }
+
 
     @Getter @Setter @NoArgsConstructor @AllArgsConstructor
     public static class Viewport {

@@ -1,4 +1,4 @@
-package ru.kviak.geocodingapi.util;
+package ru.kviak.geocodingapi.dto.map_dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -11,9 +11,14 @@ import java.math.BigDecimal;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-public class Position {
+public class PositionDto {
     private BigDecimal lat;
     private BigDecimal lon;
+
+    @Override
+    public String toString() {
+        return   lat + "," + lon;
+    }
 
     // Геттеры и сеттеры (необязательно, но рекомендуется)
 }

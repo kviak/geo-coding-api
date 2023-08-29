@@ -4,14 +4,13 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import ru.kviak.geocodingapi.dto.map_dto.PositionDto;
 
-import java.math.BigDecimal;
 
 @Getter
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
 public class GeoCodeCoordinatesDto {
-    private BigDecimal latitude;
-    private BigDecimal longitude;
+    private PositionDto position;
 }
