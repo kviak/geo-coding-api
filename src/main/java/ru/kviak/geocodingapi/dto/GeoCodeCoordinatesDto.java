@@ -4,6 +4,7 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import ru.kviak.geocodingapi.dto.map_dto.AbstractGeoCodeDto;
 import ru.kviak.geocodingapi.dto.map_dto.PositionDto;
 
 
@@ -11,6 +12,6 @@ import ru.kviak.geocodingapi.dto.map_dto.PositionDto;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-public class GeoCodeCoordinatesDto {
+public class GeoCodeCoordinatesDto extends AbstractGeoCodeDto {
     private PositionDto position;
 }

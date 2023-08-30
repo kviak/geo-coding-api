@@ -4,12 +4,12 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.RequiredArgsConstructor;
 import lombok.SneakyThrows;
 import org.springframework.stereotype.Component;
+import ru.kviak.geocodingapi.dto.GeoCodeAddressDto;
+import ru.kviak.geocodingapi.dto.GeoCodeCoordinatesDto;
 import ru.kviak.geocodingapi.dto.map_dto.AddressInfoDto;
 import ru.kviak.geocodingapi.dto.map_dto.LocationSearchResultDto;
 import ru.kviak.geocodingapi.dto.map_dto.PositionDto;
 
-import java.io.BufferedReader;
-import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 
 @Component
@@ -19,41 +19,16 @@ public class WorkWithTomTom {
     private final ObjectMapper objectMapper;
 
     @SneakyThrows
-    public PositionDto convert(String address) {
-
-        HttpURLConnection connection = connectionMaker.make(address);
-        BufferedReader in = new BufferedReader(
-                new InputStreamReader(connection.getInputStream()));
-        String inputLine;
-        StringBuffer content = new StringBuffer();
-        while ((inputLine = in.readLine()) != null) {
-            content.append(inputLine);
-        }
-        connection.disconnect();
-        in.close();
-
-        LocationSearchResultDto locationSearchResult = objectMapper.readValue(content.toString(), LocationSearchResultDto.class);
-        System.out.println(locationSearchResult.getResults()[0].getPosition().getLat() + ", " +locationSearchResult.getResults()[0].getPosition().getLon());
+    public PositionDto convert(GeoCodeAddressDto dto) {
+        HttpURLConnection connection = connectionMaker.make(dto.getAddress());
+        LocationSearchResultDto locationSearchResult = objectMapper.readValue(connectionMaker.readResponse(connection), LocationSearchResultDto.class);
         return locationSearchResult.getResults()[0].getPosition();
     }
 
     @SneakyThrows
-    public String convert(PositionDto position) {
-
-        HttpURLConnection connection = connectionMaker.make(position);
-        BufferedReader in = new BufferedReader(
-                new InputStreamReader(connection.getInputStream()));
-        String inputLine;
-        StringBuffer content = new StringBuffer();
-        while ((inputLine = in.readLine()) != null) {
-            content.append(inputLine);
-        }
-        connection.disconnect();
-        in.close();
-        System.out.println(content.toString());
-        AddressInfoDto locationSearchResult = objectMapper.readValue(content.toString(), AddressInfoDto.class);
-        System.out.println(locationSearchResult.getAddresses().get(0));
-
+    public String convert(GeoCodeCoordinatesDto dto) {
+        HttpURLConnection connection = connectionMaker.make(dto.getPosition());
+        AddressInfoDto locationSearchResult = objectMapper.readValue(connectionMaker.readResponse(connection), AddressInfoDto.class);
         return locationSearchResult.getAddresses().get(0).getAddress().getFreeformAddress();
     }
 }
