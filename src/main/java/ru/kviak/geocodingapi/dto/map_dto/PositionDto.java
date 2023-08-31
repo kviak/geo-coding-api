@@ -1,9 +1,6 @@
 package ru.kviak.geocodingapi.dto.map_dto;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 import java.math.BigDecimal;
 
@@ -11,14 +8,8 @@ import java.math.BigDecimal;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
+@ToString
 public class PositionDto {
     private BigDecimal lat;
     private BigDecimal lon;
-
-    @Override
-    public String toString() {
-        return   lat + "," + lon;
-    }
-
-    // Геттеры и сеттеры (необязательно, но рекомендуется)
 }

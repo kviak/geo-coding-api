@@ -22,17 +22,21 @@ public class GeocodingExternalService {
 
     @SneakyThrows
     public Optional<PositionDto> convert(GeoCodeAddressDto dto) {
-        HttpURLConnection connection = connectionMaker.make(dto.getAddress());
+        HttpURLConnection connection = connectionMaker.makeGeoCode(dto.getAddress());
         LocationSearchResultDto locationSearchResult = objectMapper.readValue(connectionMaker.readResponse(connection), LocationSearchResultDto.class);
-        if (locationSearchResult.getResults().length==0) {throw new IOException();}
+        if (locationSearchResult.getResults().length==0) {
+            throw new IOException();
+        }
         return Optional.ofNullable(locationSearchResult.getResults()[0].getPosition());
     }
 
     @SneakyThrows
     public Optional<String> convert(GeoCodeCoordinatesDto dto) {
-        HttpURLConnection connection = connectionMaker.make(dto.getPosition());
+        HttpURLConnection connection = connectionMaker.makeReverseGeoCode(dto.getPosition());
         AddressInfoDto locationSearchResult = objectMapper.readValue(connectionMaker.readResponse(connection), AddressInfoDto.class);
-        if (locationSearchResult.getAddresses().isEmpty()) {throw new IOException();}
+        if (locationSearchResult.getAddresses().isEmpty()) {
+            throw new IOException();
+        }
         return Optional.ofNullable(locationSearchResult.getAddresses().get(0).getAddress().getFreeformAddress());
     }
 }

@@ -9,8 +9,6 @@ public class LocationSearchResultDto {
     private Result[] results;
     private Address[] addresses;
     private PositionDto position;
-
-    // Геттеры и сеттеры (необязательно, но рекомендуется)
     @Getter @Setter @NoArgsConstructor @AllArgsConstructor
     public static class Summary {
         private String query;
@@ -20,8 +18,6 @@ public class LocationSearchResultDto {
         private int offset;
         private int totalResults;
         private int fuzzyLevel;
-
-        // Геттеры и сеттеры (необязательно, но рекомендуется)
     }
 
     @Getter @Setter @NoArgsConstructor @AllArgsConstructor
@@ -37,7 +33,6 @@ public class LocationSearchResultDto {
         private DataSources dataSources;
         private String entityType;
 
-        // Геттеры и сеттеры (необязательно, но рекомендуется)
     }
     @Getter @Setter @NoArgsConstructor @AllArgsConstructor
     public static class Address {
@@ -53,14 +48,10 @@ public class LocationSearchResultDto {
         private String freeformAddress;
         private String localName;
         private String municipalitySubdivision;
-
-        // Геттеры и сеттеры (необязательно, но рекомендуется)
     }
     @Getter @Setter @NoArgsConstructor @AllArgsConstructor
     public static class MatchConfidence {
         private double score;
-
-        // Геттеры и сеттеры (необязательно, но рекомендуется)
     }
 
 
@@ -68,34 +59,24 @@ public class LocationSearchResultDto {
     public static class Viewport {
         private Point topLeftPoint;
         private Point btmRightPoint;
-
-        // Геттеры и сеттеры (необязательно, но рекомендуется)
     }
     @Getter @Setter @NoArgsConstructor @AllArgsConstructor
     public static class Point {
         private double lat;
         private double lon;
-
-        // Геттеры и сеттеры (необязательно, но рекомендуется)
     }
     @Getter @Setter @NoArgsConstructor @AllArgsConstructor
     public static class BoundingBox {
         private Point topLeftPoint;
         private Point btmRightPoint;
-
-        // Геттеры и сеттеры (необязательно, но рекомендуется)
     }
     @Getter @Setter @NoArgsConstructor @AllArgsConstructor
     public static class DataSources {
         @JsonProperty("geometry")
         private Geometry geometry;
-
-        // Геттеры и сеттеры (необязательно, но рекомендуется)
     }
     @Getter @Setter @NoArgsConstructor @AllArgsConstructor
     public static class Geometry {
         private String id;
-
-        // Геттеры и сеттеры (необязательно, но рекомендуется)
     }
 }

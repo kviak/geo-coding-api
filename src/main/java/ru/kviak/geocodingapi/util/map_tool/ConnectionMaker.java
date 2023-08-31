@@ -20,7 +20,7 @@ public class ConnectionMaker {
     private HttpURLConnection connection;
 
     @SneakyThrows
-    public HttpURLConnection make(String address){
+    public HttpURLConnection makeGeoCode(String address){
         URL url = new URL(new StringBuffer(uri)
                 .append(address.replace(' ', '%'))
                 .append(".json?key=")
@@ -35,7 +35,7 @@ public class ConnectionMaker {
         BufferedReader in = new BufferedReader(
                 new InputStreamReader(connection.getInputStream()));
         String inputLine;
-        StringBuffer content = new StringBuffer();
+        StringBuilder content = new StringBuilder();
         while ((inputLine = in.readLine()) != null) {
             content.append(inputLine);
         }
@@ -45,7 +45,7 @@ public class ConnectionMaker {
     }
 
     @SneakyThrows
-    public HttpURLConnection make(PositionDto position){
+    public HttpURLConnection makeReverseGeoCode(PositionDto position){
         URL url = new URL(new StringBuffer("https://api.tomtom.com/search/2/reverseGeocode/")
                 .append(position.toString())
                 .append(".json?key=")

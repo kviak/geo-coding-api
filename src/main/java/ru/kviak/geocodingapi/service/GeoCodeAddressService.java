@@ -5,7 +5,7 @@ import org.springframework.stereotype.Service;
 import ru.kviak.geocodingapi.dto.GeoCodeAddressDto;
 import ru.kviak.geocodingapi.dto.GeoCodeCoordinatesDto;
 import ru.kviak.geocodingapi.dto.GeoCodeResponseDto;
-import ru.kviak.geocodingapi.dto.map_dto.AbstractGeoCodeDto;
+import ru.kviak.geocodingapi.dto.AbstractGeoCodeDto;
 import ru.kviak.geocodingapi.repository.GeoCodeRepository;
 import ru.kviak.geocodingapi.util.error.GeoCodeInvalidAddressOrPositionException;
 import ru.kviak.geocodingapi.util.map_tool.GeocodingExternalService;
@@ -29,7 +29,6 @@ public class GeoCodeAddressService {
             GeoCodeAddressDto addressDto  = (GeoCodeAddressDto) dto.get(0);
             responseDto = new GeoCodeResponseDto(geocodingExternalService.convert(addressDto).orElseThrow(GeoCodeInvalidAddressOrPositionException::new), addressDto.getAddress());
         }
-        System.out.println(responseDto.getAddress());
         geoCodeRepository.save(GeoCodeMapper.INSTANCE.convertCustom(responseDto));
         return responseDto;
     }

@@ -18,12 +18,6 @@ public class AddressInfoDto {
         private int queryTime;
         @JsonProperty("numResults")
         private int numResults;
-
-        // Геттеры и сеттеры для полей queryTime и numResults
-        // ...
-
-        // Остальные методы и поля, если необходимы
-        // ...
     }
     @Getter
     @Setter
@@ -31,9 +25,6 @@ public class AddressInfoDto {
         private AddressData address;
         private String position;
         private String id;
-
-        // Остальные методы и поля, если необходимы
-        // ...
     }
     @ToString
     @Getter
@@ -62,12 +53,6 @@ public class AddressInfoDto {
         private BoundingBox boundingBox;
         @JsonProperty("localName")
         private String localName;
-
-        // Геттеры и сеттеры для всех полей
-        // ...
-
-        // Остальные методы и поля, если необходимы
-        // ...
     }
     @Getter
     @Setter
@@ -77,11 +62,5 @@ public class AddressInfoDto {
         @JsonProperty("southWest")
         private String southWest;
         private String entity;
-
-        // Геттеры и сеттеры для всех полей
-        // ...
-
-        // Остальные методы и поля, если необходимы
-        // ...
     }
 }

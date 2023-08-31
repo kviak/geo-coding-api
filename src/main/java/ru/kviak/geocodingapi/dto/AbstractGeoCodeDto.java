@@ -1,3 +1,3 @@
-package ru.kviak.geocodingapi.dto.map_dto;
+package ru.kviak.geocodingapi.dto;
 
 public abstract class AbstractGeoCodeDto {}
