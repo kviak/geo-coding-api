@@ -10,25 +10,29 @@ import ru.kviak.geocodingapi.dto.map_dto.AddressInfoDto;
 import ru.kviak.geocodingapi.dto.map_dto.LocationSearchResultDto;
 import ru.kviak.geocodingapi.dto.map_dto.PositionDto;
 
+import java.io.IOException;
 import java.net.HttpURLConnection;
+import java.util.Optional;
 
 @Component
 @RequiredArgsConstructor
-public class WorkWithTomTom {
+public class GeocodingExternalService {
     private final ConnectionMaker connectionMaker;
     private final ObjectMapper objectMapper;
 
     @SneakyThrows
-    public PositionDto convert(GeoCodeAddressDto dto) {
+    public Optional<PositionDto> convert(GeoCodeAddressDto dto) {
         HttpURLConnection connection = connectionMaker.make(dto.getAddress());
         LocationSearchResultDto locationSearchResult = objectMapper.readValue(connectionMaker.readResponse(connection), LocationSearchResultDto.class);
-        return locationSearchResult.getResults()[0].getPosition();
+        if (locationSearchResult.getResults().length==0) {throw new IOException();}
+        return Optional.ofNullable(locationSearchResult.getResults()[0].getPosition());
     }
 
     @SneakyThrows
-    public String convert(GeoCodeCoordinatesDto dto) {
+    public Optional<String> convert(GeoCodeCoordinatesDto dto) {
         HttpURLConnection connection = connectionMaker.make(dto.getPosition());
         AddressInfoDto locationSearchResult = objectMapper.readValue(connectionMaker.readResponse(connection), AddressInfoDto.class);
-        return locationSearchResult.getAddresses().get(0).getAddress().getFreeformAddress();
+        if (locationSearchResult.getAddresses().isEmpty()) {throw new IOException();}
+        return Optional.ofNullable(locationSearchResult.getAddresses().get(0).getAddress().getFreeformAddress());
     }
 }

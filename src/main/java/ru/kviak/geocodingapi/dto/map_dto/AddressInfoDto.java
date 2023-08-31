@@ -6,27 +6,13 @@ import lombok.Setter;
 import lombok.ToString;
 
 import java.util.List;
-
+@Getter
+@Setter
 public class AddressInfoDto {
     private Summary summary;
     private List<Address> addresses;
-
-    public Summary getSummary() {
-        return summary;
-    }
-
-    public void setSummary(Summary summary) {
-        this.summary = summary;
-    }
-
-    public List<Address> getAddresses() {
-        return addresses;
-    }
-
-    public void setAddresses(List<Address> addresses) {
-        this.addresses = addresses;
-    }
-
+    @Getter
+    @Setter
     public static class Summary {
         @JsonProperty("queryTime")
         private int queryTime;
@@ -39,35 +25,12 @@ public class AddressInfoDto {
         // Остальные методы и поля, если необходимы
         // ...
     }
-
+    @Getter
+    @Setter
     public static class Address {
         private AddressData address;
         private String position;
         private String id;
-
-        public AddressData getAddress() {
-            return address;
-        }
-
-        public void setAddress(AddressData address) {
-            this.address = address;
-        }
-
-        public String getPosition() {
-            return position;
-        }
-
-        public void setPosition(String position) {
-            this.position = position;
-        }
-
-        public String getId() {
-            return id;
-        }
-
-        public void setId(String id) {
-            this.id = id;
-        }
 
         // Остальные методы и поля, если необходимы
         // ...
@@ -106,7 +69,8 @@ public class AddressInfoDto {
         // Остальные методы и поля, если необходимы
         // ...
     }
-
+    @Getter
+    @Setter
     public static class BoundingBox {
         @JsonProperty("northEast")
         private String northEast;
