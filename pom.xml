@@ -15,7 +15,7 @@
 	<description>Geocoding service 🗺️.</description>
 	<properties>
 		<java.version>20</java.version>
-		<google.map.service>2.2.0</google.map.service>
+		<org.mapstruct.version>1.5.5.Final</org.mapstruct.version>
 	</properties>
 	<dependencies>
 		<dependency>
@@ -26,7 +26,6 @@
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-web</artifactId>
 		</dependency>
-
 		<dependency>
 			<groupId>org.postgresql</groupId>
 			<artifactId>postgresql</artifactId>
@@ -43,27 +42,30 @@
 			<scope>test</scope>
 		</dependency>
 		<dependency>
-			<groupId>com.google.maps</groupId>
-			<artifactId>google-maps-services</artifactId>
-			<version>${google.map.service}</version>
-		</dependency>
-		<dependency>
 			<groupId>org.slf4j</groupId>
 			<artifactId>slf4j-simple</artifactId>
 			<version>1.7.25</version>
 		</dependency>
 		<dependency>
-			<groupId>com.mapbox.mapboxsdk</groupId>
-			<artifactId>mapbox-sdk-turf</artifactId>
-			<version>5.8.0</version>
+			<groupId>org.modelmapper</groupId>
+			<artifactId>modelmapper</artifactId>
+			<version>3.1.1</version>
 		</dependency>
-		<!-- https://mvnrepository.com/artifact/com.mapbox.mapboxsdk/mapbox-sdk-core -->
 		<dependency>
-			<groupId>com.mapbox.mapboxsdk</groupId>
-			<artifactId>mapbox-sdk-core</artifactId>
-			<version>5.8.0</version>
+			<groupId>org.mapstruct</groupId>
+			<artifactId>mapstruct-processor</artifactId>
+			<version>${org.mapstruct.version}</version>
 		</dependency>
-
+		<dependency>
+			<groupId>org.mapstruct</groupId>
+			<artifactId>mapstruct</artifactId>
+			<version>${org.mapstruct.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>com.fasterxml.jackson.datatype</groupId>
+			<artifactId>jackson-datatype-jsr310</artifactId>
+			<version>2.15.2</version>
+		</dependency>
 
 	</dependencies>
 
