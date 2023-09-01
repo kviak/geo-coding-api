@@ -4,6 +4,7 @@ import lombok.SneakyThrows;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 import ru.kviak.geocodingapi.dto.map_dto.PositionDto;
+import ru.kviak.geocodingapi.util.error.GeoCodeInvalidAddressOrPositionException;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -32,6 +33,7 @@ public class ConnectionMaker {
 
 
     public String readResponse(HttpURLConnection connection) throws IOException {
+        if (connection.getResponseCode() == 400) {throw new GeoCodeInvalidAddressOrPositionException();}
         BufferedReader in = new BufferedReader(
                 new InputStreamReader(connection.getInputStream()));
         String inputLine;

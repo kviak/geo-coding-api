@@ -9,8 +9,8 @@ import ru.kviak.geocodingapi.dto.GeoCodeCoordinatesDto;
 import ru.kviak.geocodingapi.dto.map_dto.AddressInfoDto;
 import ru.kviak.geocodingapi.dto.map_dto.LocationSearchResultDto;
 import ru.kviak.geocodingapi.dto.map_dto.PositionDto;
+import ru.kviak.geocodingapi.util.error.GeoCodeAddressOrPositionNotFound;
 
-import java.io.IOException;
 import java.net.HttpURLConnection;
 import java.util.Optional;
 
@@ -25,7 +25,7 @@ public class GeocodingExternalService {
         HttpURLConnection connection = connectionMaker.makeGeoCode(dto.getAddress());
         LocationSearchResultDto locationSearchResult = objectMapper.readValue(connectionMaker.readResponse(connection), LocationSearchResultDto.class);
         if (locationSearchResult.getResults().length==0) {
-            throw new IOException();
+            throw new GeoCodeAddressOrPositionNotFound();
         }
         return Optional.ofNullable(locationSearchResult.getResults()[0].getPosition());
     }
@@ -35,7 +35,7 @@ public class GeocodingExternalService {
         HttpURLConnection connection = connectionMaker.makeReverseGeoCode(dto.getPosition());
         AddressInfoDto locationSearchResult = objectMapper.readValue(connectionMaker.readResponse(connection), AddressInfoDto.class);
         if (locationSearchResult.getAddresses().isEmpty()) {
-            throw new IOException();
+            throw new GeoCodeAddressOrPositionNotFound();
         }
         return Optional.ofNullable(locationSearchResult.getAddresses().get(0).getAddress().getFreeformAddress());
     }
