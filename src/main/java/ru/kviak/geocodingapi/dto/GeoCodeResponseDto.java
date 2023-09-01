@@ -4,7 +4,7 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import ru.kviak.geocodingapi.dto.map_dto.PositionDto;
+import ru.kviak.geocodingapi.dto.mapdto.PositionDto;
 
 @Setter
 @Getter
