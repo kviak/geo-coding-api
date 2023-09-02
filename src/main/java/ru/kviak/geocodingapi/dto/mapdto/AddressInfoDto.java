@@ -1,4 +1,4 @@
-package ru.kviak.geocodingapi.dto.map_dto;
+package ru.kviak.geocodingapi.dto.mapdto;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Getter;

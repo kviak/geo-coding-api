@@ -8,7 +8,7 @@ import ru.kviak.geocodingapi.dto.GeoCodeResponseDto;
 import ru.kviak.geocodingapi.dto.AbstractGeoCodeDto;
 import ru.kviak.geocodingapi.repository.GeoCodeRepository;
 import ru.kviak.geocodingapi.util.error.GeoCodeInvalidAddressOrPositionException;
-import ru.kviak.geocodingapi.util.map_tool.GeocodingExternalService;
+import ru.kviak.geocodingapi.util.maptool.GeocodingExternalService;
 import ru.kviak.geocodingapi.util.mapper.GeoCodeMapper;
 
 import java.util.List;

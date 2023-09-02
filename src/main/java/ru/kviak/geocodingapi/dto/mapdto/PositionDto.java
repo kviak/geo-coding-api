@@ -1,4 +1,4 @@
-package ru.kviak.geocodingapi.dto.map_dto;
+package ru.kviak.geocodingapi.dto.mapdto;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
