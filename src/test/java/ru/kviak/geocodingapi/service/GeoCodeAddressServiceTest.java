@@ -37,7 +37,7 @@ public class GeoCodeAddressServiceTest {
     }
 
     @Test
-    void TestConvertWithAddressShouldReturnResponseDtoAndSaveInDB(){
+    void testConvertWithAddressShouldReturnResponseDtoAndSaveInDB(){
         GeoCodeAddressDto geoCodeAddressDto = new GeoCodeAddressDto("Kirov");
         List<GeoCodeAddressDto> list = List.of(geoCodeAddressDto);
         GeoCodeResponseDto responseDto = new GeoCodeResponseDto(new PositionDto(BigDecimal.TEN, BigDecimal.TEN), "Kirov");
@@ -52,7 +52,7 @@ public class GeoCodeAddressServiceTest {
     }
 
     @Test
-    void TestConvertWithCoordinatesShouldReturnResponseDtoAndSaveInDB(){
+    void testConvertWithCoordinatesShouldReturnResponseDtoAndSaveInDB(){
         GeoCodeCoordinatesDto geoCodeCoordinatesDto = new GeoCodeCoordinatesDto(new PositionDto(BigDecimal.TEN, BigDecimal.TEN));
         List<GeoCodeCoordinatesDto> list = List.of(geoCodeCoordinatesDto);
         GeoCodeResponseDto responseDto = new GeoCodeResponseDto(geoCodeCoordinatesDto.getPosition(), "Kirov");
