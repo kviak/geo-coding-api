@@ -23,11 +23,13 @@ public class GeoCodeAddressService {
         GeoCodeResponseDto responseDto;
         if (dto.get(0).getClass() == GeoCodeCoordinatesDto.class){
             GeoCodeCoordinatesDto coordinatesDto  = (GeoCodeCoordinatesDto) dto.get(0);
-            responseDto = new GeoCodeResponseDto(coordinatesDto.getPosition(), geocodingExternalService.convert(coordinatesDto).orElseThrow(GeoCodeInvalidAddressOrPositionException::new));
+            responseDto = new GeoCodeResponseDto(coordinatesDto.getPosition(), geocodingExternalService.convert(coordinatesDto)
+                            .orElseThrow(GeoCodeInvalidAddressOrPositionException::new));
         }
         else {
             GeoCodeAddressDto addressDto  = (GeoCodeAddressDto) dto.get(0);
-            responseDto = new GeoCodeResponseDto(geocodingExternalService.convert(addressDto).orElseThrow(GeoCodeInvalidAddressOrPositionException::new), addressDto.getAddress());
+            responseDto = new GeoCodeResponseDto(geocodingExternalService.convert(addressDto)
+                    .orElseThrow(GeoCodeInvalidAddressOrPositionException::new), addressDto.getAddress());
         }
         geoCodeRepository.save(GeoCodeMapper.INSTANCE.convertCustom(responseDto));
         return responseDto;
