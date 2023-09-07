@@ -43,4 +43,26 @@ public class RestControllerTest {
                         "    \"address\": \"Kirov\"\n" +
                         "}"));
     }
+
+    @Test
+    void makeAddressTest() throws Exception{
+        mockMvc.perform(MockMvcRequestBuilders
+                        .post("/api/v1/search/reverse-geocode")
+                        .content("{\n" +
+                                "  \"position\": {\n" +
+                                "        \"lat\": 58.60532, \n" +
+                                "        \"lon\": 49.66877\n" +
+                                "    }\n" +
+                                "}")
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .accept(MediaType.APPLICATION_JSON))
+                .andExpectAll(status().isOk())
+                .andExpect(MockMvcResultMatchers.content().json("{\n" +
+                        "    \"position\": {\n" +
+                        "        \"lat\": 58.60532,\n" +
+                        "        \"lon\": 49.66877\n" +
+                        "    },\n" +
+                        "    \"address\": \"Преображенская улица, 43Б, Киров, 610000\"\n" +
+                        "}"));
+    }
 }
