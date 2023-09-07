@@ -16,7 +16,6 @@ import ru.kviak.geocodingapi.util.error.GeoCodeInvalidAddressOrPositionException
 import java.time.Instant;
 import java.util.Collections;
 
-
 @Slf4j
 @RestController
 @RequestMapping("/api/v1/search")
