@@ -15,18 +15,33 @@
 	<description>Geocoding service 🗺️.</description>
 	<properties>
 		<jackson-datatype-jsr310.version>2.15.2</jackson-datatype-jsr310.version>
+		<start-class>ru.kviak.geocodingapi.GeocodingApiApplication</start-class>
 		<java.version>20</java.version>
 		<org.mapstruct.version>1.5.5.Final</org.mapstruct.version>
 		<modelmapper.version>3.1.1</modelmapper.version>
+		<spring-boot-starter-webflux.version>3.1.3</spring-boot-starter-webflux.version>
+		<springfox-swagger-ui.version>3.0.0</springfox-swagger-ui.version>
+		<org.springdoc.version>2.0.3</org.springdoc.version>
 	</properties>
 	<dependencies>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-data-jpa</artifactId>
 		</dependency>
+<!--		http://localhost:8080/swagger-ui/index.html-->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-docker-compose</artifactId>
+			<optional>true</optional>
+		</dependency>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-web</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.springdoc</groupId>
+			<artifactId>springdoc-openapi-starter-webmvc-ui</artifactId>
+			<version>${org.springdoc.version}</version>
 		</dependency>
 		<dependency>
 			<groupId>org.postgresql</groupId>
@@ -63,11 +78,25 @@
 			<artifactId>jackson-datatype-jsr310</artifactId>
 			<version>${jackson-datatype-jsr310.version}</version>
 		</dependency>
-		<!-- https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-webflux -->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-webflux</artifactId>
-			<version>3.1.3</version>
+			<version>${spring-boot-starter-webflux.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.testcontainers</groupId>
+			<artifactId>postgresql</artifactId>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.testcontainers</groupId>
+			<artifactId>junit-jupiter</artifactId>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-testcontainers</artifactId>
+			<scope>test</scope>
 		</dependency>
 
 	</dependencies>
@@ -78,15 +107,17 @@
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
 				<configuration>
-					<excludes>
-						<exclude>
-							<groupId>org.projectlombok</groupId>
-							<artifactId>lombok</artifactId>
-						</exclude>
-					</excludes>
+					<mainClass>ru.kviak.geocodingapi.GeocodingApiApplication</mainClass>
+					<layout>JAR</layout>
 				</configuration>
+				<executions>
+					<execution>
+						<goals>
+							<goal>repackage</goal>
+						</goals>
+					</execution>
+				</executions>
 			</plugin>
 		</plugins>
 	</build>
-
 </project>
