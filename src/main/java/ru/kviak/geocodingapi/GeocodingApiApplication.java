@@ -9,6 +9,8 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 import org.springframework.data.jpa.repository.config.EnableJpaAuditing;
 import org.springframework.http.client.reactive.ReactorClientHttpConnector;
+import org.springframework.kafka.annotation.EnableKafka;
+import org.springframework.kafka.annotation.KafkaListener;
 import org.springframework.web.reactive.function.client.WebClient;
 import reactor.netty.http.client.HttpClient;
 import reactor.netty.tcp.TcpClient;
@@ -19,11 +21,20 @@ import java.util.concurrent.TimeUnit;
 
 @SpringBootApplication
 @EnableJpaAuditing
+@EnableKafka
 public class GeocodingApiApplication {
 	@Value("${tomtom.api.url}")
 	private static final String BASE_URL = "https://api.tomtom.com/search/2/";
 	public static final int TIMEOUT = 1000;
+	/// Kafka test
 
+	@KafkaListener(topics="msg")
+	public void msgListener(String msg){
+		System.out.println(msg);
+	}
+
+
+	/// Kafka test
 	public static void main(String[] args) {
 		SpringApplication.run(GeocodingApiApplication.class, args);
 	}

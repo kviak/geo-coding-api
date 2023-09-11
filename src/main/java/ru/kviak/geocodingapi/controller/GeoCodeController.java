@@ -2,8 +2,10 @@ package ru.kviak.geocodingapi.controller;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.web.bind.annotation.*;
 import ru.kviak.geocodingapi.dto.GeoCodeAddressDto;
 import ru.kviak.geocodingapi.dto.GeoCodeCoordinatesDto;
@@ -22,6 +24,8 @@ import java.util.Collections;
 @RequiredArgsConstructor
 public class GeoCodeController {
     private final GeoCodeAddressService geoCodeAddressService;
+    @Autowired
+    private KafkaTemplate<String, String> kafkaTemplate;
 
     @PostMapping("/geocode")
     public ResponseEntity<GeoCodeResponseDto> makeCoordinates(@RequestBody GeoCodeAddressDto dto) {
@@ -29,6 +33,12 @@ public class GeoCodeController {
     }
     @PostMapping("/reverse-geocode")
     public ResponseEntity<GeoCodeResponseDto> makeAddress(@RequestBody GeoCodeCoordinatesDto dto) {
+        // kafka test
+
+        kafkaTemplate.send("msg", "goida");
+
+        // kafka test
+
         return ResponseEntity.ok(geoCodeAddressService.convert(Collections.singletonList(dto)));
     }
 
